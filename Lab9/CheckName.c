@@ -86,8 +86,7 @@ void InputName(char* name)
     scanf("%s", name);
     len = strlen(name);
     for(size_t f = 0; f < len; ++f){
-    	   if(isalpha(name[f]));
-    	   else{
+    	if(isalpha(name[f]) == 0){
     	    if(name[f] != '-')
     	    	alpha++;
     	   }
@@ -98,8 +97,7 @@ void InputName(char* name)
     	 scanf("%s", name);
     	 len = strlen(name);
     	 for(size_t f = 0; f < len; ++f){
-    		 if(isalpha(name[f]));
-    		 else{
+    		 if(isalpha(name[f]) == 0){
     			 if(name[f] != '-')
     				 alpha++;
     		 }
