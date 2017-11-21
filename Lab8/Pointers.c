@@ -118,8 +118,8 @@ int MenuSelection(char* inputChar)     //pass by reference to change value
 
 int* DealCards(int* cardPosition, int* dP1, int* pP1, int* dP2, int* pP2, int* ds, int* ps)
 {
-	*dP1 = *pP1 = *dP2 = *pP2 = *ds = *ps = 0;
-	*dP1 =  Face(cardPosition);
+    *dP1 = *pP1 = *dP2 = *pP2 = *ds = *ps = 0;
+    *dP1 =  Face(cardPosition);
     cardPosition++;
     Point(dP1, ds);
     *pP1 =  Face(cardPosition);
