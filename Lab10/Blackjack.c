@@ -27,37 +27,37 @@ int WelcomeMessage()
 
 int InputPersonalInformation(char* name)
 {
-    int len = 0, alpha = 0;
+    int len = 0, alpha = 0;         //before  you check the value is 0
 	printf("===============================\nPlease input your English name:\n");
     scanf("%s", name);
-    len = strlen(name);
-    for(size_t f = 0; f < len; ++f){
-    	if(isalpha(name[f]) == 0){
-    	    if(name[f] != '-')
-    	    	alpha++;
+    len = strlen(name);     //read the length of the input name
+    for(size_t f = 0; f < len; ++f){        //read characters one by one
+    	if(isalpha(name[f]) == 0){      //if the character is not alpha
+    	    if(name[f] != '-')          //and also not -
+    	    	alpha++;        //the check variable, alpha plus 1
     	   }
     }
-    while ((len > 20) || (alpha != 0)){
-    	 puts("Illegal name");
-    	 alpha = 0;
-    	 scanf("%s", name);
-    	 len = strlen(name);
-    	 for(size_t f = 0; f < len; ++f){
+    while ((len > 20) || (alpha != 0)){     //if the length is more than 20 & input is not all alpha
+    	 puts("Illegal name");      //print  illegal
+    	 alpha = 0;     //reset variable
+    	 scanf("%s", name);     //scan again
+    	 len = strlen(name);        //read the length of name again
+    	 for(size_t f = 0; f < len; ++f){       //do again
     		 if(isalpha(name[f]) == 0){
     			 if(name[f] != '-')
     				 alpha++;
     		 }
     	 }
     }
-   int month = 0, day = 0, year = 0;
+   int month = 0, day = 0, year = 0;        //initial the date variables
    printf("Please input your personal information (mm-dd-yyyy): ");
-   scanf("%d%*c%d%*c%d", &month, &day, &year);
-   if(year >= 1999){
+   scanf("%d%*c%d%*c%d", &month, &day, &year);      //scan personal information  (%*c can access any character
+   if(year >= 1999){        //if year > 1999 (younger then 1999)
 	   printf("Good bye! %s", name);
-	   return 1;
+	   return 1;        //return & end function
    }
-   return 0;
-
+   return 0;        //if input is older then 1999, return value
+        //use return value for checking in main function
 }
 
 void ShuffleCards(int *card)       //initial setting 52 cards and switch
@@ -95,10 +95,10 @@ int MenuSelection(char* inputChar)     //pass by reference to change value
 
 int* DealCards(int* cardPosition, int* dP1, int* pP1, int* dP2, int* pP2, int* ds, int* ps)
 {
-    *dP1 = *pP1 = *dP2 = *pP2 = *ds = *ps = 0;
-    *dP1 =  Face(cardPosition);
-    cardPosition++;
-    Point(dP1, ds);
+    *dP1 = *pP1 = *dP2 = *pP2 = *ds = *ps = 0;          //reset all value to initial value, 0
+    *dP1 =  Face(cardPosition);     //use face to get the card point  ace~king
+    cardPosition++;         //position plus
+    Point(dP1, ds);         //change to blackjack form and plus to sum
     *pP1 =  Face(cardPosition);
     cardPosition++;
     Point(pP1, ps);
@@ -110,8 +110,12 @@ int* DealCards(int* cardPosition, int* dP1, int* pP1, int* dP2, int* pP2, int* d
     Point(pP2, ps);
     printf("\nDealer's cards: %d & %d\n", *dP1, *dP2);
     printf("Player's cards: %d & %d\n", *pP1, *pP2);
+    if(*dP1 == *dP2 == 1)       //if you get two ace, you have to make some change
+        *ds = 12;
+    if(*pP1 == *pP2 == 1)
+        *ps = 12;
     //printf("%d-%d", *ds, *ps);
-    if(((*ds < *ps) && (*ps <= 21)) || (*ds > 21 && *ps <= 21))
+    if((*ds > 21 &&  *ps <= 21) || (*ps >*ds && *ps <= 21))
         printf("You Win!!\n===============================\n");
     else if((*ds == *ps) || ((*ds >= 21) && (*ps >= 21)))
         printf("You Push!!\n===============================\n");

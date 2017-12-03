@@ -22,8 +22,8 @@ int main()
     char *ptr = inputChar;         //define point *ptr = address
 	if (WelcomeMessage() == 1){
 		age = InputPersonalInformation(name);
-		if(age)
-			return 0;
+		if(age)         //if return value is 1(younger), run function "return 0"
+			return 0;       //end function
 		printf("Hello, %s\n", name);
         puts("Start Game!\n===============================");
         puts("Select the mode you want:");
