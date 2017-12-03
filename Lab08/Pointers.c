@@ -110,7 +110,7 @@ int MenuSelection(char* inputChar)     //pass by reference to change value
     while(1){
         puts("\nA) Shuffle Cards \nB) Play Game \nC) Exit Game");
         scanf("%s", inputChar);
-        if(*(inputChar + 1) == 0)
+        if(*(inputChar + 1) == 0)       //if input is a character, then return 1 and start input selection
             return 1;
         printf("Your selection is %s. Please select A, B or C\n===============================\n", inputChar);
     }
